@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { RolesAccessControlContextProvider } from "roles-access-control";
+import "./App.css";
+import Component from "./Component";
+
+const rolesAccesses = {
+    user: ["read"],
+    staff: ["read", "update"],
+    admin: ["read", "write", "update", "delete"],
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const [currentUserRole, setCurrentUserRole] = useState(null);
+    return (
+        <RolesAccessControlContextProvider
+            currentUserRole={currentUserRole}
+            rolesAccesses={rolesAccesses}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Component
+                rolesAccesses={rolesAccesses}
+                currentUserRole={currentUserRole}
+                setCurrentUserRole={setCurrentUserRole}
+            />
+        </RolesAccessControlContextProvider>
+    );
 }
 
 export default App;
