@@ -49,7 +49,7 @@ const Component = ({ currentUserRole, setCurrentUserRole, rolesAccesses }) => {
                     </ComponentAccess>
                 </Case>
                 <Case style={isPermissionsValid ? { color: "green" } : {}}>
-                    If you have read or update access then the text color would
+                    If you have read and update access then the text color would
                     turn to green
                 </Case>
             </Cases>
